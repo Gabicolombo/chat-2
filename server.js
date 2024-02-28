@@ -9,6 +9,8 @@ const io = socket(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+let users = [];
+
 io.on('connection', socket => {
 
   socket.on('chat message', (msg) => {
@@ -21,6 +23,12 @@ io.on('connection', socket => {
     console.log('Client disconnect');
   });
 
+  socket.on('new_user', (user) => {
+    console.log('New User entered: ' + user);
+    users.push(user);
+
+    console.log(users);
+  });
 
 });
 
