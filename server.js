@@ -13,10 +13,11 @@ let users = [];
 
 io.on('connection', socket => {
 
-  socket.on('chat message', (msg) => {
-    console.log('Message received: ' + msg);
+  
+  socket.on('chat message', (msg, user) => {
+    console.log('Message received: ' + msg + user);
     // emit message
-    io.emit('chat message', msg);
+    io.emit('chat message', msg, user);
   });
 
   socket.on('disconnect', () => {
